@@ -52,6 +52,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Market Data APIs" href="market_data.html" />
     <link rel="prev" title="Welcome to the Platts API" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -116,6 +117,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Generating a Token
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="market_data.html">
+   Market Data APIs
   </a>
  </li>
 </ul>
@@ -443,7 +449,10 @@ The Access Token is passed in the <code class="docutils literal notranslate"><sp
     <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
   <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -454,12 +463,12 @@ The Access Token is passed in the <code class="docutils literal notranslate"><sp
 <p>The below output is in a format called <code class="docutils literal notranslate"><span class="pre">JWT</span></code> and is the expected result</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_token</span><span class="p">(</span><span class="s2">&quot;USERNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;PASSWORD&quot;</span><span class="p">,</span> <span class="s2">&quot;APIKey&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">get_token</span><span class="p">(</span><span class="s2">&quot;USERNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;PASSWORD&quot;</span><span class="p">,</span> <span class="s2">&quot;API Key&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;eyJraWQiOiJTUEdMQkRvbWFpbiIsIng1dCI6InkxX0ZTTjl6UXJOSG1kRDh3Z0pOVzFmVDI0OCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2xvZ2luLnNwZ2xvYmFsLmNvbTo0NDMvb2F1dGgyIiwiYXVkIjoiUGxhdHRzQVBJUGxhdGZvcm0iLCJleHAiOjE2NTQ4MjUzMTAsImp0aSI6IkhzRmlNX1ZhLTJBNXMwRGhaYlFDOHciLCJpYXQiOjE2NTQ4MjE3MTAsInN1YiI6IkFORFJFVy5DSFJJU1RJRUBTUEdMT0JBTC5DT00iLCJ1aWQiOiJBTkRSRVcuQ0hSSVNUSUVAU1BHTE9CQUwuQ09NIiwiZGlzdHJpYnV0b3JQbGF0Zm9ybSI6IkFQSSIsImNvdW50cnkiOiJOVUxMIiwicmVzU3J2QXR0ci1TdGF0aWMiOiJSRVNPVVJDRUNPTlNUIiwiRW1haWwiOiJhbmRyZXcuY2hyaXN0aWVAc3BnbG9iYWwuY29tIiwiRmlyc3ROYW1lIjoiQW5kcmV3IiwiR3JvdXBzIjoiUExNRFZfUk9MRV9FVVJPUEU6Q0ZMT1dfWlpaSU5UX1dFQl9DRkxPOlBMTURWX1JPTEVfUE9XRVI6U0NfWFBSRVNTRkVFRDpTQ19YUFJFU1NGRUVEIERBVEEgR1VJREU6U0NfR0RTLUFQSTpQTE1EVl9BTEw6UExNRFZfUk9MRV9OQVRHQVM6UExNRFZfUk9MRV9OR0w6U0NfQUxMOlJPTEVfQUxMOlBMTURWX1JPTEU6R0RTLUFQSV9BTEwiLCJzZXNzaW9uSWQiOiIyMWFmZmNjOTY2ZTkzYjllNjg1MGI2MzM4OGIzY2U4Y2M0MzNjMzdhY2M5NDg1YjViMDUyYjZkMzdmMDNmNTEwIiwiTGFzdE5hbWUiOiJDaHJpc3RpZSIsIlNQX1NTT19HUk9VUFMiOiJQTE1EVl9ST0xFX0VVUk9QRTpDRkxPV19aWlpJTlRfV0VCX0NGTE86UExNRFZfUk9MRV9QT1dFUjpTQ19YUFJFU1NGRUVEOlNDX1hQUkVTU0ZFRUQgREFUQSBHVUlERTpTQ19HRFMtQVBJOlBMTURWX0FMTDpQTE1EVl9ST0xFX05BVEdBUzpQTE1EVl9ST0xFX05HTDpTQ19BTEw6Uk9MRV9BTEw6UExNRFZfUk9MRTpHRFMtQVBJX0FMTCIsImNsaWVudCI6IlBMX0FQSV9QbGF0Zm9ybSIsInNjb3BlIjpbIlBsYXR0c0FQSVBsYXRmb3JtLmFwaSJdLCJkb21haW4iOiJTUEdMQkRvbWFpbiJ9.NQUeRMggyqvUQhZU-zuDt0_4M5hVViWUsCWIE7ZgHTsJKEKyGKN3MNEQc2gcx7uYNoDyQCDva1wXUD5XganaYffdoMBJxx-gIefwScsZ7aJ5DQNjMtEmt3N4V9bCCNVRFazrGmNYbyrGYcCjwf-71DLYC6yut-JKVOGkbb9TWF4o01CmJSt6LiR4bcCC2mXlH7loNu2RzEW7YwCO2oj-1lepxCAWnJ4oC_b_P0BE4iofLYV9RIC0rx82FoXPt_mmkusKxkplTrsbruz1C4A3CfDodNKimf3w6jM19uWSj27ppX642izO-vl2jg4-r_D7ko5sKrtjYyRPjRgjXeOFbw&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;eyJraWQiOiJTUEdMQkRvbWFpbiIsIng1dCI6InkxX0ZTTjl6UXJOSG1kRDh3Z0pOVzFmVDI0OCIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJodHRwczovL2xvZ2luLnNwZ2xvYmFsLmNvbTo0NDMvb2F1dGgyIiwiYXVkIjoiUGxhdHRzQVBJUGxhdGZvcm0iLCJleHAiOjE2NTQ4MzEyNDAsImp0aSI6ImliUWU0ZV8wbHBNX0VYaVhhbi1pZUEiLCJpYXQiOjE2NTQ4Mjc2NDAsInN1YiI6IkFORFJFVy5DSFJJU1RJRUBTUEdMT0JBTC5DT00iLCJ1aWQiOiJBTkRSRVcuQ0hSSVNUSUVAU1BHTE9CQUwuQ09NIiwiZGlzdHJpYnV0b3JQbGF0Zm9ybSI6IkFQSSIsImNvdW50cnkiOiJOVUxMIiwicmVzU3J2QXR0ci1TdGF0aWMiOiJSRVNPVVJDRUNPTlNUIiwiRW1haWwiOiJhbmRyZXcuY2hyaXN0aWVAc3BnbG9iYWwuY29tIiwiRmlyc3ROYW1lIjoiQW5kcmV3IiwiR3JvdXBzIjoiUExNRFZfUk9MRV9FVVJPUEU6Q0ZMT1dfWlpaSU5UX1dFQl9DRkxPOlBMTURWX1JPTEVfUE9XRVI6U0NfWFBSRVNTRkVFRDpTQ19YUFJFU1NGRUVEIERBVEEgR1VJREU6U0NfR0RTLUFQSTpQTE1EVl9BTEw6UExNRFZfUk9MRV9OQVRHQVM6UExNRFZfUk9MRV9OR0w6U0NfQUxMOlJPTEVfQUxMOlBMTURWX1JPTEU6R0RTLUFQSV9BTEwiLCJzZXNzaW9uSWQiOiI2NmM3MzgzYzBjMDllMDhlYjQ4MzNjMGJjMTJhYmViMjdmNzRiYWI2MTk0NGY5YzZmOWMxNGZjZTAwYWUwYTQ3IiwiTGFzdE5hbWUiOiJDaHJpc3RpZSIsIlNQX1NTT19HUk9VUFMiOiJQTE1EVl9ST0xFX0VVUk9QRTpDRkxPV19aWlpJTlRfV0VCX0NGTE86UExNRFZfUk9MRV9QT1dFUjpTQ19YUFJFU1NGRUVEOlNDX1hQUkVTU0ZFRUQgREFUQSBHVUlERTpTQ19HRFMtQVBJOlBMTURWX0FMTDpQTE1EVl9ST0xFX05BVEdBUzpQTE1EVl9ST0xFX05HTDpTQ19BTEw6Uk9MRV9BTEw6UExNRFZfUk9MRTpHRFMtQVBJX0FMTCIsImNsaWVudCI6IlBMX0FQSV9QbGF0Zm9ybSIsInNjb3BlIjpbIlBsYXR0c0FQSVBsYXRmb3JtLmFwaSJdLCJkb21haW4iOiJTUEdMQkRvbWFpbiJ9.glCtuaV9E9U937wbgEpnibIAuZbAm4HaA9fEGXsMWiipOSwE-GU-Egg9ah-A-U71qUX2xz0oztgktkLvqzfVYZQn1vffv8DFPAF819fvDNU22MQ5IZLDylHOUtUnWc4WEhIKvnyNEU4AKeSUp8jXgfebQS5aw6IxTl-3UOlGanfKJBWVDqJUexA4JfqJcOxwhbiUhgr74_jSJrv9zO2aKNSsxlDw7n000H1YA1jLgMfESXXyuDj1jkjFoDFE6-rBVynArzfUC1DlVjXcdCk9rbmQjQT1SL1czWGTHYyGkRudC8p7BPbwjM-1ZiGfmW9SfwMFdi0D141NyTHrT8D08Q&#39;
 </pre></div>
 </div>
 </div>
@@ -534,6 +543,13 @@ The Access Token is passed in the <code class="docutils literal notranslate"><sp
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Welcome to the Platts API</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="market_data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Market Data APIs</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
