@@ -5,4 +5,7 @@ format: jb-book
 root: intro
 chapters:
   - file: notebooks/token
-  - file: notebooks/market_data
+  - file: notebooks/marketdata/index
+    sections:
+      - file: notebooks/marketdata/getting_started
+      - file: notebooks/marketdata/indepth_example
