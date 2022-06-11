@@ -420,11 +420,11 @@ title="Print to PDF"
 <h2>Fetching Data<a class="headerlink" href="#fetching-data" title="Permalink to this headline">#</a></h2>
 <section id="install-dependencies">
 <h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requests</span> <span class="pre">pandas</span> <span class="pre">pprint</span></code></p>
-<ol class="simple">
-<li><p>Import Dependencies</p></li>
-<li><p>Copy our <code class="docutils literal notranslate"><span class="pre">get_token</span></code> function from earlier</p></li>
-</ol>
+</div>
+<p>Import dependencies</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
@@ -434,6 +434,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">get_token</span></code> function</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">):</span>
@@ -461,7 +462,7 @@ title="Print to PDF"
 <section id="get-current-assessments">
 <h3>Get Current Assessments<a class="headerlink" href="#get-current-assessments" title="Permalink to this headline">#</a></h3>
 <ol class="simple">
-<li><p>Create a function - <code class="docutils literal notranslate"><span class="pre">get_current_assessments</span></code> to call the Platts Current Endpoint</p></li>
+<li><p>Create a function - <code class="docutils literal notranslate"><span class="pre">get_current_assessments</span></code> - to call the Platts Current Endpoint</p></li>
 <li><p>Requires <code class="docutils literal notranslate"><span class="pre">username</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>, <code class="docutils literal notranslate"><span class="pre">apikey</span></code> and a list of <code class="docutils literal notranslate"><span class="pre">symbols</span></code></p></li>
 <li><p>Returns a <code class="docutils literal notranslate"><span class="pre">dict</span></code> (json) of the data from the Platts API</p></li>
 </ol>
@@ -492,9 +493,14 @@ title="Print to PDF"
     <span class="k">else</span><span class="p">:</span>
       <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
     <span class="k">raise</span>
-
-<span class="c1">#invoke function </span>
-<span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PCAAS00&quot;</span><span class="p">,</span> <span class="s2">&quot;PCAAT00&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Invoke <code class="docutils literal notranslate"><span class="pre">get_current_assessments</span></code> and print results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">symbols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PCAAS00&quot;</span><span class="p">,</span> <span class="s2">&quot;PCAAT00&quot;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">get_current_assessments</span><span class="p">(</span><span class="s2">&quot;USERNAME&quot;</span><span class="p">,</span> <span class="s2">&quot;PASSWORD&quot;</span><span class="p">,</span> <span class="s2">&quot;APIKey&quot;</span><span class="p">,</span> <span class="n">symbols</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">])</span>
 </pre></div>

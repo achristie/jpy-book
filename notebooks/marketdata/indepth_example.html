@@ -430,8 +430,8 @@ title="Print to PDF"
 <h2>Fetching Data<a class="headerlink" href="#fetching-data" title="Permalink to this headline">#</a></h2>
 <section id="install-dependencies">
 <h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">#</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">requests</span> <span class="pre">pandas</span> <span class="pre">pprint</span></code></p>
 </div>
 <p>Import dependencies</p>
@@ -517,7 +517,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Invoke function and print truncated results</p>
+<p>Invoke <code class="docutils literal notranslate"><span class="pre">get_mdc_list</span></code> and print truncated results</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mdc_data</span> <span class="o">=</span> <span class="n">get_mdc_list</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">)</span>
@@ -550,7 +550,7 @@ title="Print to PDF"
 </ol>
 <div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_current_assesments_by_mdc</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">,</span> <span class="n">mdc</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_current_assessments_by_mdc</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">,</span> <span class="n">mdc</span><span class="p">):</span>
   <span class="n">token</span> <span class="o">=</span> <span class="n">get_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">)</span>
 
   <span class="c1"># must be quotes around mdc</span>
@@ -579,12 +579,12 @@ title="Print to PDF"
 </div>
 </div>
 </div>
-<p>Invoke function and print truncated results</p>
+<p>Invoke <code class="docutils literal notranslate"><span class="pre">get_current_assessments_by_mdc</span></code> and print truncated results</p>
 <div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mdc</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mdc_data</span><span class="p">[</span><span class="s1">&#39;facets&#39;</span><span class="p">][</span><span class="s1">&#39;facet_counts&#39;</span><span class="p">][</span><span class="s1">&#39;mdc&#39;</span><span class="p">])[</span><span class="mi">1</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fetching data for mdc: </span><span class="si">{</span><span class="n">mdc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">get_current_assesments_by_mdc</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">,</span> <span class="n">mdc</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">get_current_assessments_by_mdc</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">apikey</span><span class="p">,</span> <span class="n">mdc</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
