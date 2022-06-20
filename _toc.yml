@@ -9,3 +9,4 @@ chapters:
     sections:
       - file: notebooks/marketdata/getting_started
       - file: notebooks/marketdata/indepth_example
+      - file: notebooks/marketdata/forward_curves
